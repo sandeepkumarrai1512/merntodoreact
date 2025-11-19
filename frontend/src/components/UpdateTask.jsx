@@ -8,7 +8,7 @@ export default function UpdateTask() {
   const navigate = useNavigate();
 
   const updateTask = async () => {
-    let task = await fetch("http://localhost:3200/update-task", {
+    let task = await fetch(import.meta.env.VITE_API_URL + "/update-task", {
       method: "put",
       body: JSON.stringify(taskData),
       credentials: "include",
@@ -26,7 +26,7 @@ export default function UpdateTask() {
   };
 
   const getTask = async (id) => {
-    let task = await fetch("http://localhost:3200/task/" + id, {
+    let task = await fetch(import.meta.env.VITE_API_URL + "/task/" + id, {
       credentials: "include",
     });
     task = await task.json();

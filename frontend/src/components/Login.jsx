@@ -15,7 +15,7 @@ export default function Login() {
   
 
   const handleLogin = async () => {
-    let result = await fetch("http://localhost:3200/login", {
+    let result = await fetch(import.meta.env.VITE_API_URL + "/login", {
       method: "POST",
       body: JSON.stringify(userData),
       headers: {

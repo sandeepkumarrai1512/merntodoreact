@@ -25,7 +25,7 @@ export default function List() {
   };
 
   const deleteMultiple = async () => {
-    let item = await fetch("http://localhost:3200/delete-multiple/", {
+    let item = await fetch(import.meta.env.VITE_API_URL + "/delete-multiple/", {
       method: "delete",
       body: JSON.stringify(selectedTask),
       credentials: "include",
@@ -44,7 +44,7 @@ export default function List() {
   };
 
   const getListData = async () => {
-    let list = await fetch("http://localhost:3200/tasks", {
+    let list = await fetch(import.meta.env.VITE_API_URL + "/tasks", {
       credentials: "include",
     });
     list = await list.json();
@@ -54,7 +54,7 @@ export default function List() {
   };
 
   const deleteTask = async (id) => {
-    let item = await fetch("http://localhost:3200/delete/" + id, {
+    let item = await fetch(import.meta.env.VITE_API_URL + "/delete/" + id, {
       method: "delete",
       credentials: "include",
     });
