@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const url = process.env.MONGO_URI;
+const url = "mongodb+srv://sandeepkumarrai217_db_user:Sandy123@cluster0.palos8z.mongodb.net/?appName=Cluster0";
 const dbName = "node-project";
 
 export const collectionName = "todo";
