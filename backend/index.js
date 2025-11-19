@@ -10,13 +10,24 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+
+const allowedOrigins = ["https://merntodoreact.vercel.app"];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   })
 );
+
+// (optional but recommended) handle preflight for all routes
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
+app.use(express.json());
+
 app.use(cookieParser());
 
 app.post("/login", async (req, res) => {
