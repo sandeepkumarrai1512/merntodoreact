@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import { connection } from "./dbConfig.js";
 
 dotenv.config();
 
@@ -29,6 +30,19 @@ app.options("*", cors({
 app.use(express.json());
 
 app.use(cookieParser());
+
+async function testMongo() {
+  try {
+    const db = await connection();
+    await db.command({ ping: 1 });
+    console.log("✅ MongoDB connection OK from Render");
+  } catch (err) {
+    console.error("❌ MongoDB test connection failed:", err);
+  }
+}
+
+// Call once when server starts
+testMongo();
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
